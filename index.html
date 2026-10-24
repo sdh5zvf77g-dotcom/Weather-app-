@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07182a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Weather Thailand">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.json">
+<meta name="description" content="Weather, wind, rain, air quality and sky conditions for Phaya Mengrai District, Chiang Rai, Thailand.">
+<title>Phaya Mengrai Weather Pro</title>
+<style>
+:root{color-scheme:dark;--bg:#061321;--panel:rgba(8,29,48,.92);--panel2:#0b263d;--line:#17415b;--text:#f3f8ff;--muted:#9db6ca;--blue:#39b9ff;--cyan:#71e2ff;--gold:#ffd66e;--green:#48e0a4;--red:#ff8b8b}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 75% 0%,#19486b 0%,#0a2035 36%,var(--bg) 76%);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);min-height:100vh}
+button,select{font:inherit}button{cursor:pointer}.top{padding:22px max(16px,calc((100vw - 1440px)/2));border-bottom:1px solid var(--line);background:linear-gradient(110deg,rgba(2,13,25,.88),rgba(12,43,66,.68));position:relative;overflow:hidden}.top:after{content:"";position:absolute;right:5%;top:-80px;width:280px;height:280px;border-radius:50%;background:#3bb9ff20;filter:blur(45px);pointer-events:none}
+.brand{display:flex;align-items:center;gap:13px;position:relative;z-index:1}.brandicon{font-size:37px}.brand h1{font-size:clamp(22px,4vw,36px);margin:0;letter-spacing:-.7px}.sub{color:var(--muted);margin-top:4px;font-size:14px}.toprow{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}.controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.btn,.select{border:1px solid #2b5975;background:#0b2940;color:var(--text);border-radius:12px;padding:10px 13px}.btn.primary{background:#087fc0;border-color:#24baff}.btn:active{transform:scale(.98)}.status{font-size:12px;color:var(--green);margin-top:9px}.layout{max-width:1440px;margin:auto;padding:18px;display:grid;grid-template-columns:205px minmax(0,1fr);gap:17px}.nav{display:flex;flex-direction:column;gap:7px;position:sticky;top:12px;align-self:start}.nav button{text-align:left;border:1px solid transparent;background:transparent;color:#b9ccdc;border-radius:11px;padding:11px 12px}.nav button.active,.nav button:hover{background:#0c3d5d;border-color:#1d739f;color:white}.nav .smallnote{color:#7f9aaf;font-size:12px;line-height:1.5;padding:12px 6px}.main{min-width:0}.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:13px}.card{grid-column:span 4;background:linear-gradient(145deg,var(--panel),rgba(6,22,37,.96));border:1px solid var(--line);border-radius:17px;padding:16px;box-shadow:0 12px 30px #0002;min-width:0;scroll-margin-top:12px}.card.wide{grid-column:span 8}.card.full{grid-column:1/-1}.card.half{grid-column:span 6}.card h2{font-size:16px;margin:0 0 14px;display:flex;gap:8px;align-items:center}.muted{color:var(--muted)}.tiny{font-size:12px;color:var(--muted)}.hero{display:flex;align-items:center;gap:16px}.bigicon{font-size:62px;line-height:1}.temp{font-size:clamp(48px,7vw,72px);font-weight:750;letter-spacing:-3px;line-height:1}.unit{font-size:24px;vertical-align:top;letter-spacing:0}.desc{font-size:17px;font-weight:650;margin-top:7px}.metricrow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:19px;padding-top:15px;border-top:1px solid var(--line)}.metric{min-width:0}.metric .ico{font-size:19px}.metric .label{font-size:11px;color:var(--muted);margin-top:5px}.metric .value{font-size:15px;font-weight:650;overflow-wrap:anywhere;margin-top:2px}.split{display:grid;grid-template-columns:1fr 1fr;gap:12px}.stat{padding:12px;border:1px solid #19445e;background:#081e30;border-radius:12px}.stat .n{font-size:22px;font-weight:700;margin-top:3px}.bar{height:7px;border-radius:8px;background:#19394c;overflow:hidden;margin-top:9px}.bar span{display:block;height:100%;background:linear-gradient(90deg,#28aaff,#5fe2c0);border-radius:8px;width:0}.hourly{display:flex;gap:10px;overflow-x:auto;padding-bottom:5px}.hour{flex:0 0 83px;text-align:center;background:#081e30;border:1px solid #173d55;border-radius:12px;padding:11px 7px}.hour .hico{font-size:25px;margin:8px 0}.hour .ht{font-weight:700}.hour .small{font-size:11px;color:var(--muted);margin-top:6px}.days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:7px}.day{text-align:center;padding:11px 5px;background:#081e30;border:1px solid #173d55;border-radius:12px}.day .dico{font-size:25px;margin:8px 0}.day .temps{font-weight:700;font-size:13px}.day .rain{font-size:11px;color:var(--cyan);margin-top:7px}.winddial{width:126px;height:126px;border:2px solid #2e94d0;border-radius:50%;display:grid;place-items:center;margin:auto;position:relative;background:radial-gradient(circle,#123c58,#061827)}.winddial .arrow{font-size:45px;color:#6bd4ff;transform:rotate(0deg);display:block}.winddial .dirs{position:absolute;top:5px;font-size:10px;color:#9bcce6}.windstats{display:grid;grid-template-columns:1fr 1fr;gap:9px}.windstats .stat{padding:10px}.chart{display:flex;align-items:end;gap:6px;height:140px;padding:8px 0 0;border-bottom:1px solid #335267}.barcol{flex:1;min-width:9px;display:flex;flex-direction:column;align-items:center;justify-content:end;height:100%;gap:5px}.barcol .column{width:65%;min-height:2px;background:linear-gradient(0deg,#1487ce,#69d9ff);border-radius:4px 4px 0 0}.barcol label{font-size:10px;color:var(--muted)}.barcol b{font-size:9px;font-weight:500}.pill{display:inline-block;padding:5px 8px;border-radius:99px;background:#113b42;color:#72efbd;font-size:12px}.info-list{display:grid;grid-template-columns:1fr 1fr;gap:10px}.infoitem{padding:10px 0;border-bottom:1px solid #17364b}.infoitem b{display:block;font-size:13px}.infoitem span{font-size:12px;color:var(--muted)}.mapbox{height:190px;border-radius:12px;overflow:hidden;border:1px solid var(--line)}.mapbox iframe{width:100%;height:100%;border:0}.footer{text-align:center;color:#7591a7;font-size:12px;padding:22px 10px 34px}.error{color:#ffb3a8;font-size:13px;line-height:1.5}.loading{color:var(--cyan)}.hidden{display:none!important}
+@media(max-width:900px){.layout{grid-template-columns:1fr;padding:12px}.nav{position:static;flex-direction:row;overflow:auto;padding-bottom:4px}.nav button{white-space:nowrap;padding:9px 11px}.nav .smallnote{display:none}.card{grid-column:span 6}.card.wide{grid-column:span 12}.card.half{grid-column:span 6}.brandicon{font-size:30px}}
+@media(max-width:580px){.top{padding:17px 14px}.layout{padding:10px}.grid{gap:10px}.card,.card.wide,.card.half{grid-column:1/-1;padding:14px}.hero{gap:14px}.bigicon{font-size:53px}.metricrow{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:13px}.days{grid-template-columns:repeat(4,minmax(0,1fr))}.days .day:nth-child(n+5){margin-top:2px}.windstats{grid-template-columns:1fr 1fr}.info-list{grid-template-columns:1fr 1fr}.toprow{align-items:flex-start}.controls{width:100%}.btn,.select{padding:9px 10px}.temp{font-size:58px}}
+
+/* Reference-inspired dashboard layout */
+.top{min-height:142px;padding-top:18px;padding-bottom:20px;background:
+ linear-gradient(90deg,rgba(2,14,27,.96) 0%,rgba(3,21,37,.80) 42%,rgba(3,20,32,.22) 100%),
+ radial-gradient(ellipse at 78% 10%,rgba(255,213,119,.85) 0%,rgba(255,213,119,.16) 12%,transparent 30%),
+ linear-gradient(176deg,transparent 32%,rgba(21,73,104,.9) 33%,rgba(10,43,66,.96) 48%,transparent 49%),
+ linear-gradient(165deg,#244e69 0%,#102d47 45%,#061321 100%);
+}
+.top:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.8;background:
+ linear-gradient(160deg,transparent 45%,rgba(16,62,73,.9) 46%,transparent 66%),
+ linear-gradient(195deg,transparent 44%,rgba(10,45,56,.85) 45%,transparent 72%);}
+.top:after{right:4%;top:5px;width:210px;height:120px;background:radial-gradient(ellipse,#ffe5a2 0%,#ffd16b55 20%,transparent 68%);filter:blur(12px)}
+.brand h1{font-size:clamp(24px,3.1vw,35px)}
+.layout{grid-template-columns:140px minmax(0,1fr);gap:10px;padding:10px;max-width:1600px}
+.nav{gap:5px;background:rgba(3,19,32,.78);padding:4px;border-radius:13px}
+.nav button{font-size:13px;padding:10px 8px;border-radius:9px}
+.grid{grid-template-columns:1.28fr .9fr 1.18fr 1.18fr;grid-template-areas:
+ "current details wind wind"
+ "current details sunmoon sunmoon"
+ "hourly hourly hourly rain"
+ "daily daily daily rain"
+ "area area air stars"
+ "area area air map";gap:9px}
+#current{grid-area:current}
+#details{grid-area:details}
+#wind{grid-area:wind}
+#sunmoon{grid-area:sunmoon}
+#hourly{grid-area:hourly}
+#daily{grid-area:daily}
+#rain{grid-area:rain}
+#area{grid-area:area}
+#air{grid-area:air}
+#stars{grid-area:stars}
+#area{grid-column:auto}
+.card,.card.wide,.card.full,.card.half{grid-column:auto;padding:12px;border-radius:13px}
+.card h2{font-size:14px;margin-bottom:10px}
+.hero{gap:10px}.bigicon{font-size:52px}.temp{font-size:clamp(42px,4.5vw,62px)}
+.metricrow{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:13px;padding-top:11px}
+.metric .value{font-size:13px}
+.hourly{gap:6px}.hour{flex-basis:66px;padding:8px 4px}.hour .hico{font-size:21px}
+.days{grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}.day{padding:8px 3px}.day .dico{font-size:21px}
+.winddial{width:96px;height:96px}.winddial .arrow{font-size:34px}
+.windstats{gap:5px}.windstats .stat{padding:7px}.windstats .n{font-size:17px}
+.info-list{gap:7px}.infoitem{padding:7px 0}
+@media(max-width:900px){
+ .layout{grid-template-columns:1fr;padding:10px}.nav{flex-direction:row;overflow:auto}.nav button{white-space:nowrap}
+ .grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-areas:none}
+ #current,#details,#wind,#sunmoon,#hourly,#daily,#rain,#area,#air,#stars{grid-area:auto}
+ #current,#hourly,#daily,#area{grid-column:1/-1}
+}
+@media(max-width:580px){
+ .top{min-height:0}.layout{padding:8px}.grid{grid-template-columns:1fr}
+ #current,#details,#wind,#sunmoon,#hourly,#daily,#rain,#area,#air,#stars{grid-column:1/-1}
+ .days{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+
+
+.splash{position:fixed;inset:0;z-index:9999;background:#2d77ac;display:flex;align-items:center;justify-content:center;padding:0;transition:opacity .45s ease,visibility .45s ease}
+.splash.hide{opacity:0;visibility:hidden;pointer-events:none}
+.splash-inner{width:100%;height:100%;position:relative;display:flex;align-items:flex-end;justify-content:center;overflow:hidden;background:#2d77ac}
+.splash-inner img{position:absolute;width:100%;height:100%;object-fit:cover;object-position:center}
+.splash-open{position:absolute;bottom:max(22px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);border:1px solid #ffffffa8;background:#06223add;color:#fff;border-radius:999px;padding:12px 22px;font-weight:700;white-space:nowrap;box-shadow:0 6px 24px #0004}
+@media (display-mode:standalone){.splash-open{bottom:max(28px,env(safe-area-inset-bottom))}}
+
+</style>
+</head>
+<body>
+
+<div class="splash" id="splash" aria-label="Weather Thailand opening screen">
+ <div class="splash-inner">
+  <img src="weather-thailand.jpeg" alt="Weather Thailand — Phaya Mengrai District">
+  <button class="splash-open" id="openDashboard">Open Weather Dashboard →</button>
+ </div>
+</div>
+
+<header class="top">
+ <div class="toprow">
+  <div class="brand"><div class="brandicon">📍</div><div><h1>Phaya Mengrai Weather Pro</h1><div class="sub">พญาเม็งราย · Chiang Rai Province, Thailand</div></div></div>
+  <div class="controls"><button class="btn" id="units">°C / °F</button><button class="btn" id="refresh">↻ Refresh weather</button><a class="btn" style="text-decoration:none" href="https://www.google.com/maps/search/?api=1&query=Phaya+Mengrai+District+Chiang+Rai+Thailand" target="_blank" rel="noopener">⌖ Map</a></div>
+ </div>
+ <div class="status" id="status">● Connecting to live weather services…</div>
+</header>
+<div class="layout">
+ <nav class="nav" aria-label="Dashboard sections">
+  <button class="active" data-target="current">☀️ Current</button><button data-target="hourly">◷ Hourly</button><button data-target="daily">▦ 7-day</button><button data-target="wind">〰 Wind</button><button data-target="rain">💧 Rainfall</button><button data-target="air">🍃 Air quality</button><button data-target="sunmoon">☾ Sun & Moon</button><button data-target="stars">✦ Stars</button><button data-target="area">⌖ Area info</button>
+  <div class="smallnote">Local time: Thailand ICT (UTC+7). Weather data refreshes on demand.</div>
+ </nav>
+ <main class="main">
+  <div class="grid">
+   <section class="card wide" id="current"><h2>🌤️ Current conditions <span class="pill" id="livepill">Live forecast</span></h2>
+    <div class="hero"><div class="bigicon" id="currentIcon">🌤️</div><div><div class="temp"><span id="temp">—</span><span class="unit" id="unit">°C</span></div><div class="desc" id="condition">Loading conditions…</div><div class="muted">Feels like <b id="feels">—</b><span class="unit">°</span></div></div></div>
+    <div class="muted" style="margin-top:10px">High <b id="high">—</b>° · Low <b id="low">—</b>° · <span id="todaydate">Local forecast</span></div>
+    <div class="metricrow">
+     <div class="metric"><div class="ico">💧</div><div class="label">Humidity</div><div class="value" id="humidity">—</div></div>
+     <div class="metric"><div class="ico">〰️</div><div class="label">Wind</div><div class="value" id="windspeed">—</div></div>
+     <div class="metric"><div class="ico">⏱️</div><div class="label">Pressure</div><div class="value" id="pressure">—</div></div>
+     <div class="metric"><div class="ico">👁️</div><div class="label">Visibility</div><div class="value" id="visibility">—</div></div>
+    </div>
+   </section>
+   <section class="card" id="details"><h2>📋 Weather details</h2>
+    <div class="infoitem"><b>☀️ UV index <span id="uv" style="float:right">—</span></b><span id="uvlabel">Waiting for forecast</span><div class="bar"><span id="uvbar"></span></div></div>
+    <div class="infoitem"><b>🌧️ Chance of rain <span id="rainchance" style="float:right">—</span></b><span id="rainmm">Precipitation forecast</span><div class="bar"><span id="rainbar"></span></div></div>
+    <div class="infoitem"><b>🌫️ Cloud cover <span id="cloud" style="float:right">—</span></b><span>Fraction of sky covered</span><div class="bar"><span id="cloudbar"></span></div></div>
+    <div class="infoitem"><b>🌡️ Dew point <span id="dew" style="float:right">—</span></b><span>Moisture in the air</span></div>
+    <div class="infoitem"><b>💨 Wind gusts <span id="gust" style="float:right">—</span></b><span>Highest forecast gust</span></div>
+   </section>
+   <section class="card full" id="hourly"><h2>🕒 Hourly forecast <span class="muted tiny">Next 24 hours</span></h2><div class="hourly" id="hourlylist"><span class="loading">Loading hourly forecast…</span></div></section>
+   <section class="card full" id="daily"><h2>📅 7-day forecast</h2><div class="days" id="days"><span class="loading">Loading daily forecast…</span></div></section>
+   <section class="card half" id="wind"><h2>〰️ Wind & pressure</h2><div class="split"><div><div class="winddial"><div><span class="dirs">N · E · S · W</span><span class="arrow" id="windarrow">↑</span><div id="winddir" style="font-weight:700;text-align:center">—</div></div></div><div style="text-align:center;margin-top:9px"><b id="windmain">—</b><div class="tiny">Average wind</div></div></div><div class="windstats"><div class="stat"><div class="tiny">Direction</div><div class="n" id="winddirection">—</div><div class="tiny">Compass</div></div><div class="stat"><div class="tiny">Gusts</div><div class="n" id="windgust2">—</div><div class="tiny">km/h</div></div><div class="stat"><div class="tiny">Pressure</div><div class="n" id="pressure2">—</div><div class="tiny">hPa</div></div><div class="stat"><div class="tiny">Wind scale</div><div class="n" id="beaufort">—</div><div class="tiny">Beaufort estimate</div></div></div></div></section>
+   <section class="card half" id="rain"><h2>💧 Rainfall & precipitation</h2><div class="split"><div><div class="tiny">Rain today (forecast)</div><div class="n" style="font-size:27px;font-weight:750" id="raintoday">—</div><div class="tiny">mm</div><div class="infoitem"><b>Next 24h</b><span id="rain24">—</span></div><div class="infoitem"><b>Rain chance</b><span id="rainprob2">—</span></div></div><div><div class="tiny">Next 7 days · daily rain (mm)</div><div class="chart" id="rainchart"></div></div></div><div class="tiny" style="margin-top:10px">Forecast rainfall is modelled, not a rain-gauge measurement.</div></section>
+   <section class="card half" id="air"><h2>🍃 Air quality</h2><div class="split"><div class="stat"><div class="tiny">European AQI</div><div class="n" id="aqi">—</div><div id="aqilabel" class="pill">Loading</div></div><div class="stat"><div class="tiny">PM2.5</div><div class="n" id="pm25">—</div><div class="tiny">µg/m³</div></div></div><div class="info-list" style="margin-top:10px"><div class="infoitem"><b>PM10</b><span id="pm10">—</span></div><div class="infoitem"><b>Ozone (O₃)</b><span id="ozone">—</span></div><div class="infoitem"><b>Nitrogen dioxide</b><span id="no2">—</span></div><div class="infoitem"><b>Carbon monoxide</b><span id="co">—</span></div></div><div class="tiny" style="margin-top:9px">Grid-based estimates may differ from a local monitoring station. For health alerts, check Thai official advisories too.</div></section>
+   <section class="card half" id="sunmoon"><h2>🌅 Sun & Moon</h2><div class="info-list"><div class="infoitem"><b>🌄 Sunrise</b><span id="sunrise">—</span></div><div class="infoitem"><b>🌇 Sunset</b><span id="sunset">—</span></div><div class="infoitem"><b>☀️ Daylight</b><span id="daylight">—</span></div><div class="infoitem"><b>🌙 Moon phase</b><span id="moonphase">—</span></div><div class="infoitem"><b>🌔 Moon illumination</b><span id="moonillum">—</span></div><div class="infoitem"><b>🌌 Sky cover tonight</b><span id="nightcloud">—</span></div></div><div class="tiny" style="margin-top:10px">Sun times are forecast API values. Moon phase is calculated approximately for the local date.</div></section>
+   <section class="card half" id="stars"><h2>✨ Stars & night-sky outlook</h2><div class="stat"><div class="tiny">Stargazing outlook</div><div class="n" id="starrating">—</div><div class="muted" id="starreason">Calculating cloud and Moon conditions…</div><div class="bar"><span id="starbar"></span></div></div><div class="info-list" style="margin-top:9px"><div class="infoitem"><b>🌌 Milky Way</b><span id="milky">Season and darkness dependent</span></div><div class="infoitem"><b>🌃 Light pollution</b><span>Varies by village and nearby lights</span></div><div class="infoitem"><b>🔭 Best tip</b><span>Choose a dark, safe spot away from lights</span></div></div><p class="tiny">This is a practical estimate, not a telescope-grade sky chart. Clouds, haze, smoke, Moon brightness and local lights all affect what you can see.</p></section>
+   <section class="card full" id="area"><h2>📍 About Phaya Mengrai District</h2><div class="info-list">
+    <div class="infoitem"><b>🇹🇭 Province</b><span>Chiang Rai, northern Thailand</span></div><div class="infoitem"><b>🕘 Time zone</b><span>Indochina Time · UTC+7</span></div>
+    <div class="infoitem"><b>🗺️ Approximate centre</b><span>19.8489° N, 100.1536° E</span></div><div class="infoitem"><b>📐 District area</b><span>About 620 km² (published reference)</span></div>
+    <div class="infoitem"><b>🏘️ Administration</b><span>Five tambons: Mengrai, Mae Pao, Mae Tam, Mai Ya and Tat Khwan</span></div><div class="infoitem"><b>🌊 Landscape</b><span>Lowland river plains and surrounding rural hills; the Ing River basin is a local geographic feature</span></div>
+    <div class="infoitem"><b>🌦️ Typical seasons</b><span>Hot season around Feb–May; rainy season around May–Oct; cooler/drier months around Nov–Feb (varies year to year)</span></div><div class="infoitem"><b>🌱 Local life</b><span>Rural communities, agriculture, waterways and countryside</span></div>
+   </div><div class="mapbox" style="margin-top:13px"><iframe title="Map of Phaya Mengrai District" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=100.02%2C19.72%2C100.30%2C19.98&layer=mapnik&marker=19.8489%2C100.1536"></iframe></div><p class="tiny">Map marker is an approximate district-centre reference, not a property-level location. District facts are general background and may be based on older published sources.</p></section>
+  </div>
+  <div id="error" class="error" role="status" style="margin-top:12px"></div>
+  <footer class="footer">Phaya Mengrai Weather Pro · Made for Phaya Mengrai District, Chiang Rai · Weather via Open-Meteo · Internet connection required for live updates</footer>
+ </main>
+</div>
+<script>
+(() => {
+const splash=document.getElementById('splash');
+const hideSplash=()=>{if(splash)splash.classList.add('hide');};
+document.getElementById('openDashboard')?.addEventListener('click',hideSplash);
+window.setTimeout(hideSplash,3200);
+const LAT=19.8489,LON=100.1536;
+let fahrenheit=false,weather=null,air=null;
+const $=id=>document.getElementById(id);
+const fmt=(n,d=0)=>n==null||!Number.isFinite(Number(n))?'—':Number(n).toFixed(d);
+const ctemp=n=>n==null?'—':fahrenheit?`${Math.round(n*9/5+32)}°F`:`${Math.round(n)}°C`;
+const windUnit=n=>n==null?'—':`${Math.round(n)} km/h`;
+const timeOnly=s=>s?new Date(s).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',timeZone:'Asia/Bangkok'}):'—';
+const dateOnly=s=>s?new Date(s+'T12:00:00+07:00').toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short',timeZone:'Asia/Bangkok'}):'—';
+const wxcode=c=>{if(c===0)return ['☀️','Clear sky'];if(c===1)return ['🌤️','Mainly clear'];if(c===2)return ['⛅','Partly cloudy'];if(c===3)return ['☁️','Overcast'];if([45,48].includes(c))return ['🌫️','Fog'];if([51,53,55,56,57].includes(c))return ['🌦️','Drizzle'];if([61,63,65,66,67,80,81,82].includes(c))return ['🌧️','Rain showers'];if([71,73,75,77,85,86].includes(c))return ['🌨️','Snow / ice conditions'];if([95,96,99].includes(c))return ['⛈️','Thunderstorm'];return ['🌡️','Variable conditions']};
+const compass=d=>{if(d==null)return '—';return ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'][Math.round(d/22.5)%16]};
+const beaufort=s=>{if(s<1)return '0';if(s<6)return '1';if(s<12)return '2';if(s<20)return '3';if(s<29)return '4';if(s<39)return '5';if(s<50)return '6';if(s<62)return '7';if(s<75)return '8';if(s<89)return '9';if(s<103)return '10';if(s<118)return '11';return '12'};
+function moon(date){const d=new Date(date+'T12:00:00Z');let days=(d.getTime()-Date.UTC(2000,0,6,18,14))/86400000;let age=((days%29.530588853)+29.530588853)%29.530588853;let illum=(1-Math.cos(2*Math.PI*age/29.530588853))/2;let phase=age<1.85?'New Moon':age<5.53?'Waxing Crescent':age<9.22?'First Quarter':age<12.91?'Waxing Gibbous':age<16.61?'Full Moon':age<20.30?'Waning Gibbous':age<23.99?'Last Quarter':age<27.68?'Waning Crescent':'New Moon';return {phase,illum:Math.round(illum*100),age};}
+function aqiLabel(v){if(v==null)return ['Unavailable','No data'];if(v<=20)return ['Good','Good'];if(v<=40)return ['Fair','Fair'];if(v<=60)return ['Moderate','Moderate'];if(v<=80)return ['Poor','Poor'];if(v<=100)return ['Very poor','Very poor'];return ['Extremely poor','Extremely poor'];}
+async function load(){
+ $('status').textContent='● Updating live forecast…';$('error').textContent='';
+ try{
+ const base='https://api.open-meteo.com/v1/forecast?latitude='+LAT+'&longitude='+LON+'&timezone=Asia%2FBangkok&forecast_days=7&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,rain,showers,weather_code,cloud_cover,pressure_msl,surface_pressure,wind_speed_10m,wind_direction_10m,wind_gusts_10m&hourly=temperature_2m,apparent_temperature,precipitation_probability,precipitation,weather_code,wind_speed_10m,wind_direction_10m,relative_humidity_2m,uv_index,visibility,cloud_cover&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max,precipitation_sum,precipitation_probability_max,wind_speed_10m_max,wind_gusts_10m_max';
+ const [wr,ar]=await Promise.all([
+  fetch(base,{cache:'no-store'}),
+  fetch('https://air-quality-api.open-meteo.com/v1/air-quality?latitude='+LAT+'&longitude='+LON+'&timezone=Asia%2FBangkok&current=european_aqi,pm2_5,pm10,nitrogen_dioxide,ozone,carbon_monoxide',{cache:'no-store'})
+ ]);
+ if(!wr.ok)throw new Error('Weather service returned HTTP '+wr.status);
+ weather=await wr.json();air=ar.ok?await ar.json():null;render();
+ $('status').textContent='● Updated '+new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',timeZone:'Asia/Bangkok'})+' ICT · Phaya Mengrai forecast point';
+ }catch(e){$('status').textContent='● Weather update unavailable';$('error').textContent='Could not load live data. Check your internet connection and tap Refresh. Details: '+e.message;if(!weather)$('condition').textContent='Live data unavailable';}
+}
+function render(){
+ const c=weather.current,h=weather.hourly,d=weather.daily,idx=Math.max(0,h.time.findIndex(t=>t===c.time)),day=0,wx=wxcode(c.weather_code);
+ $('currentIcon').textContent=wx[0];$('condition').textContent=wx[1];$('temp').textContent=fahrenheit?Math.round(c.temperature_2m*9/5+32):Math.round(c.temperature_2m);$('unit').textContent=fahrenheit?'°F':'°C';
+ $('feels').textContent=fahrenheit?Math.round(c.apparent_temperature*9/5+32):Math.round(c.apparent_temperature);
+ $('high').textContent=fahrenheit?Math.round(d.temperature_2m_max[0]*9/5+32):Math.round(d.temperature_2m_max[0]);$('low').textContent=fahrenheit?Math.round(d.temperature_2m_min[0]*9/5+32):Math.round(d.temperature_2m_min[0]);$('todaydate').textContent=dateOnly(d.time[0]);
+ $('humidity').textContent=fmt(c.relative_humidity_2m)+'%';$('windspeed').textContent=windUnit(c.wind_speed_10m)+' '+compass(c.wind_direction_10m);$('pressure').textContent=fmt(c.pressure_msl)+' hPa';$('visibility').textContent=idx>=0&&h.visibility[idx]!=null?(h.visibility[idx]/1000).toFixed(1)+' km':'—';
+ const uv=h.uv_index[idx]??d.uv_index_max[0];$('uv').textContent=fmt(uv,1);$('uvlabel').textContent=uv<3?'Low':uv<6?'Moderate':uv<8?'High':uv<11?'Very high':'Extreme';$('uvbar').style.width=Math.min(100,(uv/11)*100)+'%';
+ const rp=h.precipitation_probability[idx]??d.precipitation_probability_max[0];$('rainchance').textContent=fmt(rp)+'%';$('rainmm').textContent='Current hour precipitation: '+fmt(h.precipitation[idx],1)+' mm';$('rainbar').style.width=Math.min(100,rp)+'%';
+ $('cloud').textContent=fmt(c.cloud_cover)+'%';$('cloudbar').style.width=c.cloud_cover+'%';$('dew').textContent=ctemp(h.temperature_2m[idx]-(100-c.relative_humidity_2m)/5);$('gust').textContent=windUnit(c.wind_gusts_10m);
+ $('hourlylist').innerHTML='';for(let j=idx;j<Math.min(idx+24,h.time.length);j++){const x=wxcode(h.weather_code[j]);const tm=new Date(h.time[j]);const label=tm.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',timeZone:'Asia/Bangkok'});$('hourlylist').insertAdjacentHTML('beforeend',`<div class="hour"><div class="tiny">${label}</div><div class="hico">${x[0]}</div><div class="ht">${ctemp(h.temperature_2m[j])}</div><div class="small">💧 ${fmt(h.precipitation_probability[j])}%</div><div class="small">〰 ${fmt(h.wind_speed_10m[j])} km/h</div></div>`)}
+ $('days').innerHTML='';for(let j=0;j<Math.min(7,d.time.length);j++){let x=wxcode(d.weather_code[j]);$('days').insertAdjacentHTML('beforeend',`<div class="day"><div class="tiny">${dateOnly(d.time[j])}</div><div class="dico">${x[0]}</div><div class="temps">${ctemp(d.temperature_2m_max[j])}</div><div class="tiny">${ctemp(d.temperature_2m_min[j])}</div><div class="rain">💧 ${fmt(d.precipitation_probability_max[j])}%</div></div>`)}
+ $('windarrow').style.transform='rotate('+c.wind_direction_10m+'deg)';$('winddir').textContent=compass(c.wind_direction_10m);$('windmain').textContent=windUnit(c.wind_speed_10m);$('winddirection').textContent=compass(c.wind_direction_10m);$('windgust2').textContent=fmt(c.wind_gusts_10m);$('pressure2').textContent=fmt(c.pressure_msl);$('beaufort').textContent=beaufort(c.wind_speed_10m);
+ $('raintoday').textContent=fmt(d.precipitation_sum[0],1);$('rain24').textContent=fmt(h.precipitation.slice(idx,idx+24).reduce((a,b)=>a+(b||0),0),1)+' mm estimated';$('rainprob2').textContent=fmt(d.precipitation_probability_max[0])+'% maximum daily chance';
+ $('rainchart').innerHTML='';const max=Math.max(1,...d.precipitation_sum.slice(0,7));for(let j=0;j<Math.min(7,d.time.length);j++){let el=document.createElement('div');el.className='barcol';el.innerHTML=`<b>${fmt(d.precipitation_sum[j],0)}</b><div class="column" style="height:${Math.max(2,d.precipitation_sum[j]/max*88)}px"></div><label>${new Date(d.time[j]+'T12:00:00+07:00').toLocaleDateString('en-GB',{weekday:'short',timeZone:'Asia/Bangkok'})}</label>`;$('rainchart').appendChild(el)}
+ if(air&&air.current){let a=air.current,v=a.european_aqi,lab=aqiLabel(v);$('aqi').textContent=fmt(v);$('aqilabel').textContent=lab[0];$('pm25').textContent=fmt(a.pm2_5,1);$('pm10').textContent=fmt(a.pm10,1)+' µg/m³';$('ozone').textContent=fmt(a.ozone,1)+' µg/m³';$('no2').textContent=fmt(a.nitrogen_dioxide,1)+' µg/m³';$('co').textContent=fmt(a.carbon_monoxide,0)+' µg/m³';}else{$('aqi').textContent='—';$('aqilabel').textContent='Unavailable';}
+ $('sunrise').textContent=timeOnly(d.sunrise[0]);$('sunset').textContent=timeOnly(d.sunset[0]);let mins=(new Date(d.sunset[0])-new Date(d.sunrise[0]))/60000;$('daylight').textContent=Math.floor(mins/60)+'h '+Math.round(mins%60)+'m';
+ const m=moon(d.time[0]);$('moonphase').textContent=m.phase;$('moonillum').textContent=m.illum+'% illuminated';
+ let nightIdx=h.time.findIndex(t=>t.slice(11,13)==='21');if(nightIdx<0)nightIdx=idx;$('nightcloud').textContent=fmt(h.cloud_cover[nightIdx])+'% cloud cover';let score=Math.max(0,100-(h.cloud_cover[nightIdx]||0)*.8-m.illum*.25);let rating=score>75?'Excellent':score>55?'Good':score>35?'Fair':'Poor';$('starrating').textContent=rating;$('starbar').style.width=score+'%';$('starreason').textContent='Estimated from night cloud cover ('+fmt(h.cloud_cover[nightIdx])+'%) and Moon illumination ('+m.illum+'%). Haze and light pollution are not measured.';$('milky').textContent=(new Date(d.time[0]).getMonth()>=2&&new Date(d.time[0]).getMonth()<=9)?'Seasonally possible; check darkness and cloud':'Seasonally less favourable; check a sky calendar';
+}
+$('refresh').addEventListener('click',load);$('units').addEventListener('click',()=>{fahrenheit=!fahrenheit;$('units').textContent=fahrenheit?'Switch to °C':'Switch to °F';if(weather)render()});
+document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active');const el=$(b.dataset.target);if(el)el.scrollIntoView({behavior:'smooth',block:'start'})}));
+load();
+})();
+</script>
+</body>
+</html>

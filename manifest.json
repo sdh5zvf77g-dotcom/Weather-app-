@@ -1,0 +1,19 @@
+{
+  "name": "Phaya Mengrai Weather Pro",
+  "short_name": "Weather Thailand",
+  "description": "Live weather, wind, rainfall, air quality and sky conditions for Phaya Mengrai District, Chiang Rai, Thailand.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#07182a",
+  "theme_color": "#07182a",
+  "icons": [
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
